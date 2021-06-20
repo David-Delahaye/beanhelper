@@ -4,8 +4,15 @@ import React, { useState, useEffect } from "react";
 
 function App() {
   const [blogs, setBlogs] = useState([]);
+  const [number, setNumber] = useState(0);
 
   useEffect(() => {
+    fetch(
+      "https://us-central1-beanhelper-c8b6a.cloudfunctions.net/randomNumber"
+    ).then((number) => {
+      setNumber(number);
+    });
+
     const response = db.collection("Blogs");
     response.get().then((data) => {
       data.docs.forEach((item) => {
@@ -20,6 +27,7 @@ function App() {
 
   return (
     <div className="App">
+      <h2>{number}</h2>
       {blogs.map((blog) => {
         return (
           <div
