@@ -5,16 +5,13 @@ import React, { useState, useEffect } from "react";
 function App() {
   const [blogs, setBlogs] = useState([]);
 
-  const fetchBlogs = async () => {
-    const response = db.collection("Blogs");
-    const data = await response.get();
-    data.docs.forEach((item) => {
-      setBlogs([...blogs, item.data()]);
-    });
-  };
-
   useEffect(() => {
-    fetchBlogs();
+    const response = db.collection("Blogs");
+    response.get().then((data) => {
+      data.docs.forEach((item) => {
+        setBlogs(item.data());
+      });
+    });
   }, []);
 
   return (
