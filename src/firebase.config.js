@@ -1,9 +1,9 @@
 import firebase from "firebase";
 
 var firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  apiKey: "AIzaSyCBgyKrrofq7p03d5CzZ_4KeEzWi6x4Q3M",
+  authDomain: "beanhelper-c8b6a.firebaseapp.com",
+  projectId: "beanhelper-c8b6a",
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
