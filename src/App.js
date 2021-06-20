@@ -1,18 +1,21 @@
 import "./App.css";
 import db from "./firebase.config";
 import React, { useState, useEffect } from "react";
+import firebase from "firebase";
 
 function App() {
   const [blogs, setBlogs] = useState([]);
   const [number, setNumber] = useState(0);
 
-  useEffect(() => {
-    fetch(
-      "https://us-central1-beanhelper-c8b6a.cloudfunctions.net/randomNumber"
-    ).then((number) => {
-      setNumber(number);
+  const setRandomNumber = () => {
+    const randomNumber = firebase.functions().httpsCallable("randomNumber");
+    randomNumber().then((randomNum) => {
+      console.log(randomNum.data);
+      setNumber(randomNum.data);
     });
+  };
 
+  useEffect(() => {
     const response = db.collection("Blogs");
     response.get().then((data) => {
       data.docs.forEach((item) => {
@@ -28,6 +31,13 @@ function App() {
   return (
     <div className="App">
       <h2>{number}</h2>
+      <button
+        onClick={() => {
+          setRandomNumber();
+        }}
+      >
+        generate a random number
+      </button>
       {blogs.map((blog) => {
         return (
           <div
