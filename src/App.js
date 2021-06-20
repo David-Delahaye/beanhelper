@@ -17,6 +17,7 @@ function App() {
   return (
     <div className="App">
       {blogs &&
+        blogs.length !== 0 &&
         blogs.map((blog) => {
           return (
             <div
