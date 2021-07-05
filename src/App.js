@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import firebase from "firebase";
 import {
   ChakraProvider,
+  extendTheme,
   Flex,
   Divider,
   Box,
@@ -13,8 +14,20 @@ import {
   SliderThumb,
 } from "@chakra-ui/react";
 import ColourPicker from "./Components/ColourPicker";
+import Shell from "./Components/DashboardShell";
 
 const sampleBean = { height: 200, colour: "#FF0000", width: 100 };
+
+const theme = extendTheme({
+  colors: {
+    brand: {
+      100: "#DBFDDA",
+      200: "#CAFEC9",
+      // ...
+      900: "#00E809",
+    },
+  },
+});
 
 function App() {
   const [currentBean, setCurrentBean] = useState();
@@ -51,59 +64,61 @@ function App() {
   }
 
   return (
-    <ChakraProvider resetCSS>
+    <ChakraProvider resetCSS theme={theme}>
       <div className="App">
-        <Flex
-          justifyContent="center"
-          alignItems="center"
-          width="100vw"
-          height="100vh"
-        >
-          <Center w="300px" h="300px">
-            <div
-              className="bean"
-              style={{
-                background: creatorBean.colour,
-                width: creatorBean.width,
-                height: creatorBean.height,
-                borderRadius: "500px",
-              }}
-            ></div>
-            <Slider
-              aria-label="slider-ex-3"
-              value={creatorBean.height}
-              onChange={(e) => {
-                setCreatorBean({ ...creatorBean, height: e });
-              }}
-              orientation="vertical"
-              minH="32"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
+        <Shell>
+          {/* <Flex
+            justifyContent="center"
+            alignItems="center"
+            width="100vw"
+            height="100vh"
+          >
+            <Center w="300px" h="300px">
+              <div
+                className="bean"
+                style={{
+                  background: creatorBean.colour,
+                  width: creatorBean.width,
+                  height: creatorBean.height,
+                  borderRadius: "500px",
+                }}
+              ></div>
+              <Slider
+                aria-label="slider-ex-3"
+                value={creatorBean.height}
+                onChange={(e) => {
+                  setCreatorBean({ ...creatorBean, height: e });
+                }}
+                orientation="vertical"
+                minH="32"
+              >
+                <SliderTrack>
+                  <SliderFilledTrack />
+                </SliderTrack>
+                <SliderThumb />
+              </Slider>
 
-            <Slider
-              aria-label="slider-ex-3"
-              value={creatorBean.width}
-              onChange={(e) => {
-                setCreatorBean({ ...creatorBean, width: e });
-              }}
-              orientation="vertical"
-              minH="32"
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <ColourPicker
-              defaultColor={creatorBean.colour}
-              handleChange={handleChange}
-            />
-          </Center>
-        </Flex>
+              <Slider
+                aria-label="slider-ex-3"
+                value={creatorBean.width}
+                onChange={(e) => {
+                  setCreatorBean({ ...creatorBean, width: e });
+                }}
+                orientation="vertical"
+                minH="32"
+              >
+                <SliderTrack>
+                  <SliderFilledTrack />
+                </SliderTrack>
+                <SliderThumb />
+              </Slider>
+              <ColourPicker
+                defaultColor={creatorBean.colour}
+                handleChange={handleChange}
+              />
+            </Center>
+          </Flex> */}
+        </Shell>
       </div>
     </ChakraProvider>
   );
