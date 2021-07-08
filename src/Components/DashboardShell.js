@@ -13,6 +13,15 @@ export default function Shell({ children }) {
     >
       {/* header bar */}
       <Flex alignItems="center" mb="auto">
+        <Box
+          objectPosition="center"
+          height="50px"
+          width="25px"
+          bg="brand.900"
+          boxShadow="xl"
+          borderRadius="500px"
+          mr="20px"
+        ></Box>
         <Heading fontSize="64px" lineHeight="79px" mr="120px">
           BEAN
         </Heading>
