@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, Text, Slide } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import { useState } from "react";
 
 const sampleHorses = [
