@@ -1,16 +1,41 @@
-import { Box, Button, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Text, Slide } from "@chakra-ui/react";
 import { useState } from "react";
 
 const sampleHorses = [
-  { name: "bob", height: 200, width: 100, color: "red.900" },
-  { name: "bill", height: 250, width: 125, color: "pink.900" },
-  { name: "ben", height: 100, width: 150, color: "brand.900" },
-  { name: "flowerpotman", height: 150, width: 150, color: "yellow.900" },
+  {
+    name: "bob",
+    height: 200,
+    width: 100,
+    color: "red.900",
+    text: "aaaaaaaaaaa",
+  },
+  {
+    name: "bill",
+    height: 250,
+    width: 125,
+    color: "pink.900",
+    text: "bbbbbbbb",
+  },
+  {
+    name: "ben",
+    height: 100,
+    width: 150,
+    color: "brand.900",
+    text: "cccccccc",
+  },
+  {
+    name: "flowerpotman",
+    height: 150,
+    width: 150,
+    color: "yellow.900",
+    text: "ddddddddd",
+  },
 ];
 
 export default function Carousel() {
   const [horses, setHorses] = useState(sampleHorses);
   //const [horsePosition, setHorsePosition] = useState(0);
+  const [transition, setTransition] = useState(false);
 
   const moveLeft = () => {
     let newHorses = horses;
@@ -24,6 +49,12 @@ export default function Carousel() {
     let newHorse = horses[horses.length - 1];
     newHorses.pop();
     setHorses([newHorse, ...newHorses]);
+    setTransition(true);
+    console.log(transition);
+    setTimeout(() => {
+      console.log(transition);
+      setTransition(false);
+    }, 150);
   };
 
   // const moveX = (pos) => {
@@ -32,7 +63,36 @@ export default function Carousel() {
 
   return (
     <Flex width="30%" right="15%" height="100vh" position="absolute">
-      <Flex position="relative" overflow="hidden" width="100%" height="100%">
+      <Flex position="relative" overflowy="hidden" width="100%" height="100%">
+        <Box
+          position="absolute"
+          right="55%"
+          width="227px"
+          height="158px"
+          transition="0.15s ease-in-out"
+          top={transition ? "48%" : "50%"}
+          bg="white"
+          transform={
+            transition
+              ? "translate(-50%, -50%) scale(0.1) rotateZ(10deg)"
+              : "translate(-50%, -50%)"
+          }
+          opacity={transition ? "0.0" : "1"}
+          boxShadow="11px 6px 34px -2px rgba(0, 0, 0, 0.25);"
+          borderRadius="37px"
+          p="20px"
+        >
+          <Flex
+            w="100%"
+            h="100%"
+            flexDir="column"
+            opacity={transition ? 0 : 1}
+            transition="0.3s ease-in-out"
+          >
+            <Heading fontSize="24px ">{horses[1].name}</Heading>
+            <Text fontSize="16px">{horses[1].text}</Text>
+          </Flex>
+        </Box>
         {horses.map((horse, i) => {
           return (
             <Box
