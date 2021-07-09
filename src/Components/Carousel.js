@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading } from "@chakra-ui/react";
+import { Box, Button, Flex } from "@chakra-ui/react";
 import { useState } from "react";
 
 const sampleHorses = [
@@ -8,9 +8,9 @@ const sampleHorses = [
   { name: "flowerpotman", height: 150, width: 150, color: "yellow.900" },
 ];
 
-export default function Carousel({}) {
+export default function Carousel() {
   const [horses, setHorses] = useState(sampleHorses);
-  const [horsePosition, setHorsePosition] = useState(0);
+  //const [horsePosition, setHorsePosition] = useState(0);
 
   const moveLeft = () => {
     let newHorses = horses;
@@ -26,11 +26,9 @@ export default function Carousel({}) {
     setHorses([newHorse, ...newHorses]);
   };
 
-  const moveX = (pos) => {
-    setHorsePosition(pos);
-  };
-
-  console.log(horsePosition);
+  // const moveX = (pos) => {
+  //   setHorsePosition(pos);
+  // };
 
   return (
     <Flex width="30%" right="15%" height="100vh" position="absolute">
@@ -40,11 +38,11 @@ export default function Carousel({}) {
             <Box
               position="absolute"
               transition="0.3s ease-in-out"
-              top={5 + i * 45 + horsePosition * 45 + "%"}
+              top={5 + i * 45 + "%"}
               left="50%"
               objectPosition="center"
               transform={
-                i === horsePosition * -1 + 1
+                i === 1
                   ? "translate(-50%, -50%) scale(1.2)"
                   : "translate(-50%, -50%) rotateZ(30deg)"
               }

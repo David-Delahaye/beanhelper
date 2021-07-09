@@ -1,10 +1,10 @@
-import db from "./firebase.config";
-import React, { useState, useEffect } from "react";
-import firebase from "firebase";
+//import db from "./firebase.config";
+//import firebase from "firebase";
+import React from "react";
 import { ChakraProvider, extendTheme, Heading, Flex } from "@chakra-ui/react";
 
 import Shell from "./Components/DashboardShell";
-import BeanCreator from "./Components/BeanCreator";
+//import BeanCreator from "./Components/BeanCreator";
 import Carousel from "./Components/Carousel";
 import "./style.css";
 const theme = extendTheme({
@@ -40,7 +40,7 @@ const theme = extendTheme({
 });
 
 function App() {
-  const [currentBean, setCurrentBean] = useState();
+  //const [currentBean, setCurrentBean] = useState();
 
   // useEffect(async () => {
   //   const beanRef = db.collection("Beans").doc("bqi9s2KigtR1QbUgsiS1");

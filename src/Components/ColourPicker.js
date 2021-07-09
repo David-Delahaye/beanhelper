@@ -11,7 +11,6 @@ import {
   Center,
   SimpleGrid,
   Input,
-  Heading,
 } from "@chakra-ui/react";
 
 export default function ColourPicker({ defaultColor, handleChange }) {
@@ -22,7 +21,7 @@ export default function ColourPicker({ defaultColor, handleChange }) {
   useEffect(() => {
     console.log(color);
     handleChange(color);
-  }, [color]);
+  }, [color]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
