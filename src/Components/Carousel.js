@@ -34,7 +34,6 @@ const sampleHorses = [
 
 export default function Carousel() {
   const [horses, setHorses] = useState(sampleHorses);
-  //const [horsePosition, setHorsePosition] = useState(0);
   const [transition, setTransition] = useState(false);
 
   const moveLeft = () => {
@@ -42,6 +41,7 @@ export default function Carousel() {
     let newHorse = horses[0];
     newHorses.shift();
     setHorses([...newHorses, newHorse]);
+    handleTransitionAnimation();
   };
 
   const moveRight = () => {
@@ -49,17 +49,15 @@ export default function Carousel() {
     let newHorse = horses[horses.length - 1];
     newHorses.pop();
     setHorses([newHorse, ...newHorses]);
+    handleTransitionAnimation();
+  };
+
+  const handleTransitionAnimation = () => {
     setTransition(true);
-    console.log(transition);
     setTimeout(() => {
-      console.log(transition);
       setTransition(false);
     }, 150);
   };
-
-  // const moveX = (pos) => {
-  //   setHorsePosition(pos);
-  // };
 
   return (
     <Flex width="30%" right="15%" height="100vh" position="absolute">
